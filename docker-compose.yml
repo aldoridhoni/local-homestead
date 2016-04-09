@@ -1,0 +1,15 @@
+app:
+    image: *image_name*
+    volumes:
+        - (readlink --canonicalize .):/var/www/html
+    ports:
+        - "8880:80"
+    links:
+        - database
+
+database:
+    image: mariadb:latest
+    environment:
+        - MYSQL_ROOT_PASSWORD=secret
+    ports:
+        - "3306:3306"
